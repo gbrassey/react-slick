@@ -14,11 +14,11 @@ export var getTrackCSS = function(spec) {
   var trackWidth;
 
   if (spec.variableWidth) {
-    trackWidth = (spec.slideCount + 2*spec.slidesToShow) * spec.slideWidth;
+    trackWidth = (spec.slideCount + 2 * Math.ceil(spec.slidesToShow)) * spec.slideWidth;
   } else if (spec.centerMode) {
-    trackWidth = (spec.slideCount + 2*(spec.slidesToShow + 1)) * spec.slideWidth;
+    trackWidth = (spec.slideCount + 2 * (Math.ceil(spec.slidesToShow) + 1)) * spec.slideWidth;
   } else {
-    trackWidth = (spec.slideCount + 2*spec.slidesToShow) * spec.slideWidth;
+    trackWidth = (spec.slideCount + 2 * Math.ceil(spec.slidesToShow)) * spec.slideWidth;
   }
 
   var style = {

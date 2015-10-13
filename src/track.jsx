@@ -78,6 +78,7 @@ var renderSlides = (spec) => {
     // variableWidth doesn't wrap properly.
     if (spec.infinite && spec.fade === false) {
       var infiniteCount = spec.variableWidth ? spec.slidesToShow + 1 : spec.slidesToShow;
+      infiniteCount = Math.ceil(infiniteCount);
 
       if (index >= (count - infiniteCount)) {
         key = -(count - index);
