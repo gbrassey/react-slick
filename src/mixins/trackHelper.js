@@ -66,13 +66,13 @@ export var getTrackLeft = function (spec) {
   }
 
   if (spec.infinite) {
-    if (spec.slideCount > spec.slidesToShow) {
-     slideOffset = (spec.slideWidth * spec.slidesToShow) * -1;
+    if (spec.slideCount > Math.ceil(spec.slidesToShow)) {
+     slideOffset = (spec.slideWidth * Math.ceil(spec.slidesToShow)) * -1;
     }
     if (spec.slideCount % spec.slidesToScroll !== 0) {
-      if (spec.slideIndex + spec.slidesToScroll > spec.slideCount && spec.slideCount > spec.slidesToShow) {
+      if (spec.slideIndex + spec.slidesToScroll > spec.slideCount && spec.slideCount > Math.ceil(spec.slidesToShow)) {
           if(spec.slideIndex > spec.slideCount) {
-            slideOffset = ((spec.slidesToShow - (spec.slideIndex - spec.slideCount)) * spec.slideWidth) * -1;
+            slideOffset = ((Math.ceil(spec.slidesToShow) - (spec.slideIndex - spec.slideCount)) * spec.slideWidth) * -1;
           } else {
             slideOffset = ((spec.slideCount % spec.slidesToScroll) * spec.slideWidth) * -1;
           }
@@ -82,9 +82,9 @@ export var getTrackLeft = function (spec) {
 
   if (spec.centerMode) {
     if(spec.infinite) {
-      slideOffset += spec.slideWidth * Math.floor(spec.slidesToShow / 2);
+      slideOffset += spec.slideWidth * Math.floor(Math.ceil(spec.slidesToShow) / 2);
     } else {
-      slideOffset = spec.slideWidth * Math.floor(spec.slidesToShow / 2);
+      slideOffset = spec.slideWidth * Math.floor(Math.ceil(spec.slidesToShow) / 2);
     }
   }
 
@@ -92,10 +92,10 @@ export var getTrackLeft = function (spec) {
 
   if (spec.variableWidth === true) {
       var targetSlideIndex;
-      if(spec.slideCount <= spec.slidesToShow || spec.infinite === false) {
+      if(spec.slideCount <= Math.ceil(spec.slidesToShow) || spec.infinite === false) {
           targetSlide = spec.trackRef.getDOMNode().childNodes[spec.slideIndex];
       } else {
-          targetSlideIndex = (spec.slideIndex + spec.slidesToShow);
+          targetSlideIndex = (spec.slideIndex + Math.ceil(spec.slidesToShow));
           targetSlide = spec.trackRef.getDOMNode().childNodes[targetSlideIndex];
       }
       targetLeft = targetSlide ? targetSlide.offsetLeft * -1 : 0;
@@ -103,7 +103,7 @@ export var getTrackLeft = function (spec) {
           if(spec.infinite === false) {
               targetSlide = spec.trackRef.getDOMNode().children[spec.slideIndex];
           } else {
-              targetSlide = spec.trackRef.getDOMNode().children[(spec.slideIndex + spec.slidesToShow + 1)];
+              targetSlide = spec.trackRef.getDOMNode().children[(spec.slideIndex + Math.ceil(spec.slidesToShow) + 1)];
           }
 
           targetLeft = targetSlide ? targetSlide.offsetLeft * -1 : 0;
