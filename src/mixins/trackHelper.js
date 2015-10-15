@@ -82,10 +82,11 @@ export var getTrackLeft = function (spec) {
   }
 
   if (spec.centerMode) {
+    let centerOffset = ((spec.slideWidth * spec.slidesToShow) - spec.slideWidth) / 2;
     if(spec.infinite) {
-      slideOffset += spec.slideWidth * Math.floor(slidesToShowCeil / 2);
+      slideOffset += centerOffset;
     } else {
-      slideOffset = spec.slideWidth * Math.floor(slidesToShowCeil / 2);
+      slideOffset = centerOffset;
     }
   }
 
